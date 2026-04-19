@@ -1,27 +1,26 @@
-package com.swing.basics;
+package com.swing.labs;
 
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.event.*;
 
 public class p1 {
     public static void main(String[] args) {
-        // Create the frame
-        JFrame frame = new JFrame("Hello Program");
+        JFrame frame = new JFrame("Country List");
+        String[] countries = {"USA", "India", "Vietnam", "Canada", "Denmark", 
+                             "France", "Great Britain", "Japan", "Africa", 
+                             "Greenland", "Singapore"};
+
+        JList<String> list = new JList<>(countries);
+        
+        list.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                System.out.println("Selected: " + list.getSelectedValue());
+            }
+        });
+
+        frame.add(new JScrollPane(list));
+        frame.setSize(300, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 200);
-        frame.setLayout(new FlowLayout());
-
-        // Create the label with specific message
-        JLabel label = new JLabel("Hello! VI C, Welcome to Swing Programming");
-        
-        // Set font: Plain, Size 32
-        label.setFont(new Font("Arial", Font.PLAIN, 32));
-        
-        // Set color: Blue
-        label.setForeground(Color.BLUE);
-
-        // Add to frame and display
-        frame.add(label);
         frame.setVisible(true);
     }
 }

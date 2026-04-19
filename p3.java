@@ -1,37 +1,39 @@
-package com.swing.basics;
+package com.swing.labs;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.util.HashMap;
 
-public class p3 extends JFrame {
-    JLabel statusLabel;
-
-    public p3() {
-        setTitle("Image Button Event");
-        setSize(500, 300);
-        setLayout(new FlowLayout());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Load images (Ensure filenames match your local files)
-        JButton clockBtn = new JButton("Digital Clock", new ImageIcon("clock.png"));
-        JButton glassBtn = new JButton("Hour Glass", new ImageIcon("hourglass.png"));
-        statusLabel = new JLabel("Select an icon");
-
-        // Action Listener for Clock
-        clockBtn.addActionListener(e -> statusLabel.setText("Digital Clock is pressed"));
-
-        // Action Listener for Hour Glass
-        glassBtn.addActionListener(e -> statusLabel.setText("Hour Glass is pressed"));
-
-        add(clockBtn);
-        add(glassBtn);
-        add(statusLabel);
-
-        setVisible(true);
-    }
-
+public class p3 {
     public static void main(String[] args) {
-        new p3();
+        JFrame frame = new JFrame("Country Capitals");
+        String[] countries = {"USA", "India", "Vietnam", "Canada", "Denmark", 
+                             "France", "Great Britain", "Japan", "Africa", 
+                             "Greenland", "Singapore"};
+
+        HashMap<String, String> capitals = new HashMap<>();
+        capitals.put("USA", "Washington, D.C.");
+        capitals.put("India", "New Delhi");
+        capitals.put("Vietnam", "Hanoi");
+        capitals.put("Canada", "Ottawa");
+        capitals.put("Denmark", "Copenhagen");
+        capitals.put("France", "Paris");
+        capitals.put("Great Britain", "London");
+        capitals.put("Japan", "Tokyo");
+        capitals.put("Africa", "N/A (Continent)");
+        capitals.put("Greenland", "Nuuk");
+        capitals.put("Singapore", "Singapore");
+
+        JList<String> list = new JList<>(countries);
+        list.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String country = list.getSelectedValue();
+                System.out.println("Capital of " + country + ": " + capitals.get(country));
+            }
+        });
+
+        frame.add(new JScrollPane(list));
+        frame.setSize(300, 250);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
