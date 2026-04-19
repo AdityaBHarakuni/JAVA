@@ -1,26 +1,15 @@
-package stringhandling;
+package practice.string;
 public class p2 {
     public static void main(String[] args) {
-        int iterations = 10000;
-        String text = "AIET";
-
-        // Testing StringBuffer
-        long startTime = System.nanoTime();
-        StringBuffer sbuffer = new StringBuffer();
-        for (int i = 0; i < iterations; i++) {
-            sbuffer.append(text);
+        String testStr = "   ";
+        if (isNullOrEmpty(testStr)) {
+            System.out.println("The string is null or contains only whitespace.");
+        } else {
+            System.out.println("The string has content.");
         }
-        long bufferTime = System.nanoTime() - startTime;
+    }
 
-        // Testing StringBuilder
-        startTime = System.nanoTime();
-        StringBuilder sbuilder = new StringBuilder();
-        for (int i = 0; i < iterations; i++) {
-            sbuilder.append(text);
-        }
-        long builderTime = System.nanoTime() - startTime;
-
-        System.out.println("Time taken by StringBuffer: " + bufferTime + " ns");
-        System.out.println("Time taken by StringBuilder: " + builderTime + " ns");
+    public static boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().isEmpty();
     }
 }
