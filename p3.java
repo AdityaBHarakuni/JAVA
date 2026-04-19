@@ -1,18 +1,37 @@
-package practice.string;
-public class p3 {
-    public static void main(String[] args) {
-        String mainStr = "apple banana apple cherry apple";
-        String subStr = "apple";
-        System.out.println("Occurrences: " + countOccurrences(mainStr, subStr));
+package com.swing.basics;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class p3 extends JFrame {
+    JLabel statusLabel;
+
+    public p3() {
+        setTitle("Image Button Event");
+        setSize(500, 300);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Load images (Ensure filenames match your local files)
+        JButton clockBtn = new JButton("Digital Clock", new ImageIcon("clock.png"));
+        JButton glassBtn = new JButton("Hour Glass", new ImageIcon("hourglass.png"));
+        statusLabel = new JLabel("Select an icon");
+
+        // Action Listener for Clock
+        clockBtn.addActionListener(e -> statusLabel.setText("Digital Clock is pressed"));
+
+        // Action Listener for Hour Glass
+        glassBtn.addActionListener(e -> statusLabel.setText("Hour Glass is pressed"));
+
+        add(clockBtn);
+        add(glassBtn);
+        add(statusLabel);
+
+        setVisible(true);
     }
 
-    public static int countOccurrences(String main, String sub) {
-        if (main == null || sub == null || sub.isEmpty()) return 0;
-        int count = 0, index = 0;
-        while ((index = main.indexOf(sub, index)) != -1) {
-            count++;
-            index += sub.length();
-        }
-        return count;
+    public static void main(String[] args) {
+        new p3();
     }
 }
